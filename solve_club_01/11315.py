@@ -19,15 +19,15 @@ def is_concave(arr, N):
             else:
                 return 'NO'
 
-            # 대각선 순회
-            for di, dj in [[1,1],[-1,-1]]:
-                ni = i + di
-                nj = j + dj
-                if 0<=ni<N and 0<=nj<N:
-                    if arr[ni][nj] == '.':
-                        return 'NO'
-            else:
-                'YES'
+    # 대각선 순회
+    for di, dj in [[1,1],[-1,-1]]:
+        ni = i + di
+        nj = j + dj
+        if 0<=ni<N and 0<=nj<N:
+            if arr[ni][nj] == '.':
+                return 'NO'
+    else:
+        'YES'
 
 T = int(input())
 for tc in range(1, T+1):

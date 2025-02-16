@@ -1,11 +1,11 @@
-N=int(input())
-box=list(map(int,input().split()))
-max_v=0
-for i in range(N-1):
-    fall_cnt = 0
-    for j in range(i+1,N):
+N = int(input())
+box = list(map(int, input().split()))
+max_fall = 0
+for i in range(N-1):    # 마지막 상자는 확인할 필요x
+    cnt = 0         # 자신보다 작은 상자 개수
+    for j in range(i+1, N):
         if box[i] > box[j]:
-            fall_cnt += 1
-    if max_v < fall_cnt:
-        max_v = fall_cnt
-print(max_v)
+            cnt += 1
+    if max_fall < cnt:
+        max_fall = cnt
+print(max_fall)
