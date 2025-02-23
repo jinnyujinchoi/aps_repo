@@ -37,8 +37,8 @@ for _ in range(M):
     n1, n2 = map(int, input().rstrip().split())
     adj_l[n1].append(n2)
     adj_l[n2].append(n1)
-for i in range(N+1):
-    adj_l[i].sort()
+for i in range(N+1):        # 인접리스트 내부의 리스트들 순회
+    adj_l[i].sort()         # 내부리스트 오름차순으로 정렬
 # 결과 출력
 dfs(V, N)
 print()
