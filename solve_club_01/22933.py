@@ -1,11 +1,11 @@
 # 부분 배열 개수 구하기 함수
 def ssafy_part(arr, N):
     cnt = 0     # 면적이 가장 큰 배열 수 초기화
-    max_size = large_part(arr, N)
+    max_size = large_part()
     for i in range(N):
         for j in range(N):
-            for ni in range(i, N):
-                for nj in range(j, N):
+            for k in range(N):
+                for ni, nj in [[i+k, j+k]]:
                     if 0<=ni<N and 0<=nj<N:
                         if arr[i][j] == arr[ni][nj]:
                             if (ni-i+1)*(nj-j+1) == large_part(arr, N):
@@ -17,8 +17,8 @@ def large_part(arr, N):
     max_space = 0
     for i in range(N):
         for j in range(N):
-            for ni in range(i, N):
-                for nj in range(j, N):
+            for k in range(N):  # i <= ni / j <= nj 범위
+                for ni, nj in [[i+k, j+k]]:
                     if 0<=ni<N and 0<=nj<N:
                         if arr[i][j] == arr[ni][nj]:
                             space = (ni-i+1)*(nj-j+1)
