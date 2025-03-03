@@ -2,22 +2,16 @@ def max_area(arr, N):
     max_s = 0
     for i in range(N):
         for j in range(N):
-            if arr[i][j] == 1:  # 넓이 구하기 시작
-                w = h = 0    # 가로 세로 초기화
-                # 가로 찾기
-                for w in range(j, N):
-                    if arr[i][w] == 1:
-                        w += 1
-                    else:
+            if arr[i][j] == 1:
+                s = 0
+                for ni in range(i, N):
+                    if arr[ni][j] == 0:     # 같은 열에서 0 나오면 break
                         break
-                # 세로 찾기
-                for h in range(i, N):
-                    for w in range(j, j+w):
-                        if arr[h][j] == 1:
-                            h += 1
+                    for nj in range(j, N):
+                        if 0<=ni<N and 0<=nj<N and arr[ni][nj] == 1:    # 같은 행에서 0 나오면
+                            s += 1
                         else:
                             break
-                s = w*h
                 if max_s < s:
                     max_s = s
     return max_s

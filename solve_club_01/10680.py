@@ -2,7 +2,7 @@ def is_gwalho(txt):
     top = -1
     s = ['']*len(txt)
     for i in range(len(txt)):
-        if txt[i] == '(' and txt[i] == ')' and txt[i] == '{' and txt[i] == '}':
+        if txt[i] == '(' or txt[i] == ')' or txt[i] == '{' or txt[i] == '}':
             top += 1
             s[top] = txt[i]
             if s[top-1] == '(' and s[top] == ')':
