@@ -29,8 +29,5 @@ for tc in range(1, T+1):
         else:
             ch2[p] = c
 
-    # cnt = 0
-    # pre_order(N)
-    # print(f"#{tc} {cnt}")
     cnt = pre_order2(N)
     print(f"#{tc} {cnt}")
