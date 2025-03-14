@@ -1,5 +1,4 @@
 # 최대힙
-
 def enq(n):
     global last
     last += 1       # 마지막 정점 추가
