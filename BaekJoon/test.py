@@ -1,21 +1,60 @@
-T = int(input())
-for tc in range(1, T+1):
-    N, M, L = map(int, input().split())
-    arr = [0]*(N+1)     # 노드 값 저장해 줄 배열
-    leaf = [list(map(int, input().split())) for _ in range(M)]  # 리프 노드 저장
-    # 리프 값 트리에 넣어주기
-    for i in range(M):
-        arr[leaf[i][0]] = leaf[i][1]
+def binary_search_while(target):
+    left = 0
+    right = len(arr) - 1
+    cnt = 0
 
-    # arr 역순 탐색하여 완성
-    for i in range(N, L-1, -1):     # L 까지만 채우도록 수정
-        if arr[i]:      # 값이 있다면 넘어가기
-            continue
+    while left <= right:
+        mid = (left + right) // 2
+        cnt += 1        # 검색횟수 추가
+
+        if arr[mid] == target:
+            return mid, cnt      # mid index 에서 검색 완료!
+
+        # 왼쪽에 정답이 있다.
+        if target < arr[mid]:
+            right = mid - 1
         else:
-            if (i*2+1 <= N) and arr[i*2+1]:     # 오른쪽 노드 값 있다면 넘어가기
-                arr[i] = arr[i * 2] + arr[i * 2 + 1]
-                # 넘어가기라는게 무슨 말임..? 있으면 둘 다 더한다, 없으면 왼쪽만 더한다 이거 아닌가
-            else:
-                arr[i] = arr[i * 2]
+            left = mid + 1
 
-    print(f"#{tc} {arr[L]}")
+    return -1, cnt
+
+
+def binary_search_recur(left, right, target, dir=None):
+    # left, right 를 작업 영역으로 검색
+    # left <= right 만족하면 반복
+    if left > right:
+        return -1
+
+    mid = (left + right) // 2
+    # 검색하면 종료
+    if target == arr[mid]:
+        return mid, True
+
+    # 한 번 할 때마다 left 와 right 를 mid 기준으로 이동시켜 주면서 진행
+    # 왼쪽을 봐야한다
+    if target < arr[mid]:
+        if dir == 'L':
+            now_dir = False
+        else:
+            now_dir =  True
+
+        return binary_search_recur(left, mid - 1, target)
+    # 오른쪽을 봐야한다.
+    else:
+        if dir == 'R':
+            now_dir = False
+        else:
+            now_dir = True
+        return binary_search_recur(mid + 1, right, target)
+
+
+arr = [4, 2, 9, 7, 11, 23, 19]
+
+# 이진 검색은 항상 정렬된 데이터에 적용해야 한다!!!
+arr.sort()  # [2, 4, 7, 9, 11, 19, 23]
+
+print(f'9 - {binary_search_recur(0, len(arr) - 1, 9)}')
+print(f'2 - {binary_search_recur(0, len(arr) - 1, 2)}')
+print(f'20 - {binary_search_recur(0, len(arr) - 1, 20)}')
+
+
