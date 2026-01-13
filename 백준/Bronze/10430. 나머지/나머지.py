@@ -1,5 +1,7 @@
 A, B, C = map(int, input().split())
+ac = A%C
+bc = B%C
 print((A+B)%C)
-print(((A%C) + (B%C))%C)
+print((ac + bc)%C)
 print((A*B)%C)
-print(((A%C) * (B%C))%C)
+print((ac*bc)%C)
