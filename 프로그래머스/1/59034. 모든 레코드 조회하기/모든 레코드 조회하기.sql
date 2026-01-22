@@ -1,0 +1,5 @@
+-- 모든 정보 --
+SELECT *
+FROM ANIMAL_INS
+-- ID 순 --
+ORDER BY ANIMAL_ID
