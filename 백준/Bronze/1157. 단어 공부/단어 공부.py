@@ -1,11 +1,16 @@
+from collections import Counter
+
 word = input().upper()
-cnt = {}
-for i in word:
-   cnt[i] = cnt.get(i, 0) + 1
-vals = list(cnt.values())
-maxVal = max(vals)
-if vals.count(maxVal) >=2:
-    ans = '?'
-else:
-    ans = max(cnt, key=cnt.get)
+cnt = Counter(word)
+
+max_cnt = max(cnt.values())
+ans = '?'
+
+for k, v in cnt.items():
+    if v == max_cnt:
+        if ans == '?':
+            ans = k
+        else:
+            ans = '?'
+            break
 print(ans)
