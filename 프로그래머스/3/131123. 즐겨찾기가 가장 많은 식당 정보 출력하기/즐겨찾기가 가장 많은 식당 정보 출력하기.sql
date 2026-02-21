@@ -1,0 +1,14 @@
+-- 종류, ID, 이름, 즐찾수 --
+SELECT info.FOOD_TYPE,
+    info.REST_ID,
+    info.REST_NAME,
+    info.FAVORITES
+FROM REST_INFO info
+JOIN (
+    SELECT FOOD_TYPE, MAX(FAVORITES) as FAVORITES
+    FROM REST_INFO
+    GROUP BY FOOD_TYPE) as fav
+ON info.FOOD_TYPE = fav.FOOD_TYPE
+AND info.FAVORITES = fav.FAVORITES
+-- 종류 내림차 --
+ORDER BY info.FOOD_TYPE DESC
