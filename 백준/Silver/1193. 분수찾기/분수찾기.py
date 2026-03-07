@@ -12,15 +12,11 @@ d = N - start # 더할 값
 # 시작점 찾고, 분수 찾기
 if row%2 == 0:
     x, y = 1, row
-else:
-    x, y = row, 1
-
-if d == 0:
-    pass
-elif row%2 == 0: # 행이 짝수라면,
     x += d
     y -= d
 else:
+    x, y = row, 1
     x -= d
     y += d
+
 print(f'{x}/{y}')
