@@ -1,0 +1,6 @@
+-- 고양이 수, 강아지 수 조회 --
+SELECT ANIMAL_TYPE, COUNT(*) AS count
+FROM ANIMAL_INS
+-- 동물 타입 별로 묶기 --
+GROUP BY ANIMAL_TYPE
+ORDER BY ANIMAL_TYPE
